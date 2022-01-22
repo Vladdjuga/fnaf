@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,9 @@ public class AnimatronicMovement : MonoBehaviour
     public Animatronics chica;
     public Animatronics freddy;
     public float chanceReducer;
+    public CameraClick[] cameras;
+    public float timeStep = 0f;
+    public float canMove = 5f;
 
     void Start()
     {
@@ -34,36 +38,65 @@ public class AnimatronicMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        float rand = Random.value;
-        if (rand<bonnie.chanceReducer* chanceReducer)
+        if (timeStep == 0)
         {
-            rand = Random.value;
-            if (rand < bonnie.camera.stepBack_chance && bonnie.camera.stepBack!=null)
+            float rand = UnityEngine.Random.value;
+            string oldCamera = "";
+            if (rand < bonnie.chanceReducer * chanceReducer)
             {
-                int randInt = Random.Range(0, bonnie.camera.stepBack.Length);
-                if (bonnie.camera.stepBack[randInt].is_canBonnie)
+                rand = UnityEngine.Random.value;
+                if (rand < bonnie.camera.stepBack_chance / bonnie.chanceReducer / bonnie.chanceReducer && bonnie.camera.stepBack != null)
                 {
-                    bonnie.camera = bonnie.camera.stepBack[randInt];
-                    Debug.Log($"0 {bonnie.camera.stepBack.Length}");
-                    Debug.Log(randInt);
-                    Step(bonnie.camera.cameraName);
+                    int randInt = UnityEngine.Random.Range(0, bonnie.camera.stepBack.Length);
+                    oldCamera = bonnie.camera.cameraName;
+                    if (bonnie.camera.stepBack[randInt].is_canBonnie)
+                    {
+                        bonnie.camera = bonnie.camera.stepBack[randInt];
+                        Debug.Log($"0 {bonnie.camera.stepBack.Length}");
+                        Debug.Log(randInt);
+                        Step(bonnie.camera.cameraName, oldCamera);
+                    }
                 }
-            }
-            else if(rand < bonnie.camera.stepForward_chance && bonnie.camera.stepForward != null)
-            {
-                int randInt = Random.Range(0, bonnie.camera.stepForward.Length);
-                if (bonnie.camera.stepForward[randInt].is_canBonnie)
+                else if (rand < bonnie.camera.stepForward_chance / bonnie.chanceReducer / bonnie.chanceReducer && bonnie.camera.stepForward != null)
                 {
-                    bonnie.camera = bonnie.camera.stepForward[randInt];
-                    Debug.Log($"0 {bonnie.camera.stepForward.Length}");
-                    Debug.Log(randInt);
-                    Step(bonnie.camera.cameraName);
+                    int randInt = UnityEngine.Random.Range(0, bonnie.camera.stepForward.Length);
+                    oldCamera = bonnie.camera.cameraName;
+                    if (bonnie.camera.stepForward[randInt].is_canBonnie)
+                    {
+                        bonnie.camera = bonnie.camera.stepForward[randInt];
+                        Debug.Log($"0 {bonnie.camera.stepForward.Length}");
+                        Debug.Log(randInt);
+                        Step(bonnie.camera.cameraName, oldCamera);
+                    }
                 }
+
             }
         }
+        else
+        {
+            timeStep += 1 * Time.deltaTime;
+            if (timeStep >= canMove)
+                timeStep = 0f;
+        }
     }
-    void Step(string camera)
+    void Step(string camera, string oldCamera)
     {
-        Debug.Log($"Step------{camera}");
+        Debug.Log($"{camera} {oldCamera}");
+        CameraClick camera1 = null;
+        CameraClick camera2 = null;
+        foreach (var item in cameras)
+        {
+            if (item.cameraObject != null)
+            {
+                if (camera == item.cameraObject.cameraName)
+                    camera1 = item;
+                if (oldCamera == item.cameraObject.cameraName)
+                    camera2 = item;
+            }
+        }
+        camera2.view = camera2.cameraObject.standart;
+        int rand = UnityEngine.Random.Range(0, camera1.cameraObject.bonnie.Length);
+        camera1.view = camera1.cameraObject.bonnie[rand];
+        timeStep += 1 * Time.deltaTime;
     }
 }

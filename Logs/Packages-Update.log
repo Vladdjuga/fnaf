@@ -97,3 +97,14 @@ The following packages were updated:
   com.unity.xr.legacyinputhelpers from version 2.0.2 to 2.1.8
 The following packages were removed:
   com.unity.package-manager-ui@2.2.0
+
+=== Sat Jan 22 14:19:21 2022
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.collab-proxy from version 1.14.4 to 1.15.4
+  com.unity.ide.rider from version 1.2.1 to 2.0.7
+  com.unity.textmeshpro from version 2.1.4 to 3.0.6
+  com.unity.timeline from version 1.2.18 to 1.4.8

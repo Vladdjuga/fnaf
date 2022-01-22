@@ -16,6 +16,7 @@ public class CameraClick : MonoBehaviour
     public SpriteRenderer text;
     public bool is_audioOnly;
     public GameObject audioOnly;
+    public CameraAnima cameraObject;
 
     void SelectOld()
     {
