@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Scroll;
 
 public class OpenCamera : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class OpenCamera : MonoBehaviour
     public bool is_open=false;
     public GameObject cameras;
     public GameObject controllers;
+    public Scroll scroll;
 
     void Start()
     {
@@ -27,6 +29,7 @@ public class OpenCamera : MonoBehaviour
             {
                 helper.PutOnCamera(cameras, controllers);
             }
+            scroll.DoAnimation();
         }
     }
     public void OnMouseEnter()

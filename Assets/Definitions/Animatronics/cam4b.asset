@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdbd74a1d5dd3c840b218e025e156060, type: 3}
+  m_Name: cam4b
+  m_EditorClassIdentifier: 
+  cameraName: cam4b
+  is_animatronic: 0
+  stepForward_chance: 0
+  stepBack_chance: 25
+  is_canMoveHere: 1
+  stepForward: []
+  stepBack:
+  - {fileID: 11400000, guid: 7a54ec8dafa15bd4e92348cabfa6747e, type: 2}
+  is_canBonnie: 0
+  is_canChica: 1
+  is_canFreddy: 1
+  standart: {fileID: 21300000, guid: 999803df5f3061f43afd033bc1ac55f6, type: 3}
+  bonnie: []
+  chica:
+  - {fileID: 21300000, guid: 5e258cf8809c78f43a75dcd82e6b204a, type: 3}
+  - {fileID: 21300000, guid: 1a8d16e80d440a54892ea32787fbc96e, type: 3}
+  freddy: []

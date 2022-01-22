@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdbd74a1d5dd3c840b218e025e156060, type: 3}
+  m_Name: cam1b
+  m_EditorClassIdentifier: 
+  cameraName: cam1b
+  is_animatronic: 0
+  stepForward_chance: 20
+  stepBack_chance: 0
+  is_canMoveHere: 1
+  stepForward:
+  - {fileID: 11400000, guid: b7f776f17da42394cad6375b9163b372, type: 2}
+  - {fileID: 11400000, guid: 7c242b6b546054f4faf4f2d0d13c3305, type: 2}
+  - {fileID: 11400000, guid: a5584f5092ff31345b4b50a4981c096b, type: 2}
+  stepBack: []
+  is_canBonnie: 1
+  is_canChica: 1
+  is_canFreddy: 1
+  standart: {fileID: 21300000, guid: 455e8e19c9eccc943a1a0028defaf046, type: 3}
+  bonnie:
+  - {fileID: 21300000, guid: b3ddfff02e19c62498eeaadf3ec66af9, type: 3}
+  chica:
+  - {fileID: 21300000, guid: 74e89d46ce210e6429b05a1e38502698, type: 3}
+  - {fileID: 21300000, guid: 63ba4ffdced38bd479513e0194a726f0, type: 3}
+  freddy:
+  - {fileID: 21300000, guid: 63e54769219f1744398f14ce801ad67f, type: 3}
