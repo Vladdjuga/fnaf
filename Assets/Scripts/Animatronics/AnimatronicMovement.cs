@@ -13,6 +13,7 @@ public class AnimatronicMovement : MonoBehaviour
     public CameraClick[] cameras;
     public float timeStep = 0f;
     public float canMove = 5f;
+    public OnError error;
 
     void Start()
     {
@@ -49,7 +50,7 @@ public class AnimatronicMovement : MonoBehaviour
                 {
                     int randInt = UnityEngine.Random.Range(0, bonnie.camera.stepBack.Length);
                     oldCamera = bonnie.camera.cameraName;
-                    if (bonnie.camera.stepBack[randInt].is_canBonnie)
+                    if (bonnie.camera.stepBack[randInt].is_canBonnie&& !bonnie.camera.stepBack[randInt].is_animatronic)
                     {
                         bonnie.camera = bonnie.camera.stepBack[randInt];
                         Debug.Log($"0 {bonnie.camera.stepBack.Length}");
@@ -61,7 +62,7 @@ public class AnimatronicMovement : MonoBehaviour
                 {
                     int randInt = UnityEngine.Random.Range(0, bonnie.camera.stepForward.Length);
                     oldCamera = bonnie.camera.cameraName;
-                    if (bonnie.camera.stepForward[randInt].is_canBonnie)
+                    if (bonnie.camera.stepForward[randInt].is_canBonnie&&!bonnie.camera.stepForward[randInt].is_animatronic)
                     {
                         bonnie.camera = bonnie.camera.stepForward[randInt];
                         Debug.Log($"0 {bonnie.camera.stepForward.Length}");
@@ -81,7 +82,7 @@ public class AnimatronicMovement : MonoBehaviour
     }
     void Step(string camera, string oldCamera)
     {
-        Debug.Log($"{camera} {oldCamera}");
+        error.is_onError = true;
         CameraClick camera1 = null;
         CameraClick camera2 = null;
         foreach (var item in cameras)
@@ -95,8 +96,12 @@ public class AnimatronicMovement : MonoBehaviour
             }
         }
         camera2.view = camera2.cameraObject.standart;
+        camera2.cameraObject.is_animatronic = false;
+        camera2.Changed();
         int rand = UnityEngine.Random.Range(0, camera1.cameraObject.bonnie.Length);
         camera1.view = camera1.cameraObject.bonnie[rand];
+        camera2.cameraObject.is_animatronic = true;
+        camera1.Changed();
         timeStep += 1 * Time.deltaTime;
     }
 }

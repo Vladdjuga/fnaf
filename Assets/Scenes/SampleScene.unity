@@ -230,6 +230,7 @@ MonoBehaviour:
   is_audioOnly: 0
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: b7f776f17da42394cad6375b9163b372, type: 2}
+  is_spying: 0
 --- !u!61 &32099100
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -672,6 +673,7 @@ MonoBehaviour:
   - {fileID: 421280513}
   timeStep: 0
   canMove: 5
+  error: {fileID: 1873932877}
 --- !u!4 &198904403
 Transform:
   m_ObjectHideFlags: 0
@@ -1332,6 +1334,7 @@ MonoBehaviour:
   is_audioOnly: 0
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: 4031338a7f14c194aa8bc52173943992, type: 2}
+  is_spying: 0
 --- !u!61 &421280514
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1597,6 +1600,7 @@ MonoBehaviour:
   is_audioOnly: 0
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: 5c8c90fb0ed80a04db325c1ac28daced, type: 2}
+  is_spying: 0
 --- !u!61 &532944549
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1840,7 +1844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1244145995}
-  view: {fileID: 21300000, guid: b22de70c5cfc08446b3c9cd111a1fa0c, type: 3}
+  view: {fileID: 21300000, guid: 9106107a3e3346945aece6eed791e310, type: 3}
   click_button: {fileID: 21300000, guid: 383e45d34690f8141a6bb884dbb1a59f, type: 3}
   old: {fileID: 21300000, guid: 9c1a4ea93c9c6fe458f531a0b3af624d, type: 3}
   scroll: {fileID: 805707519}
@@ -1849,6 +1853,7 @@ MonoBehaviour:
   is_audioOnly: 0
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: 7c242b6b546054f4faf4f2d0d13c3305, type: 2}
+  is_spying: 0
 --- !u!61 &569519315
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2608,6 +2613,7 @@ MonoBehaviour:
   is_audioOnly: 0
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 0}
+  is_spying: 0
 --- !u!61 &837749711
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3196,6 +3202,7 @@ MonoBehaviour:
   is_audioOnly: 0
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: 04fc953c8400aa644b905b69dc5f1944, type: 2}
+  is_spying: 0
 --- !u!61 &1015015625
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3676,6 +3683,7 @@ MonoBehaviour:
   is_audioOnly: 0
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: dd87fb5d911aacf4692f6f4a36d50996, type: 2}
+  is_spying: 0
 --- !u!61 &1161562847
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4434,7 +4442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1244145995}
-  view: {fileID: 21300000, guid: 795b3dc5f73db7f4ba83e0dbf640e78f, type: 3}
+  view: {fileID: 0}
   click_button: {fileID: 21300000, guid: 383e45d34690f8141a6bb884dbb1a59f, type: 3}
   old: {fileID: 21300000, guid: 9c1a4ea93c9c6fe458f531a0b3af624d, type: 3}
   scroll: {fileID: 805707519}
@@ -4443,6 +4451,7 @@ MonoBehaviour:
   is_audioOnly: 1
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: 79eb2df275ad17d4a9a739b9135f1652, type: 2}
+  is_spying: 0
 --- !u!61 &1799163097
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4582,6 +4591,7 @@ GameObject:
   - component: {fileID: 1873932874}
   - component: {fileID: 1873932876}
   - component: {fileID: 1873932875}
+  - component: {fileID: 1873932877}
   m_Layer: 0
   m_Name: CameraNoise
   m_TagString: Untagged
@@ -4673,6 +4683,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1873932877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873932873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f178e095eeefac45b17eb3f7c7a333d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is_onError: 0
+  timeDelay: 0
+  errorTime: 3
+  spriteRenderer: {fileID: 0}
+  colorNormalNoise: {r: 1, g: 1, b: 1, a: 0.28627452}
+  colorErrorNoise: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
 --- !u!1 &1887272887
 GameObject:
   m_ObjectHideFlags: 0
@@ -5132,6 +5160,7 @@ MonoBehaviour:
   is_audioOnly: 0
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: a5584f5092ff31345b4b50a4981c096b, type: 2}
+  is_spying: 0
 --- !u!61 &2110036205
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5358,6 +5387,7 @@ MonoBehaviour:
   is_audioOnly: 0
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: 5b14c7fddb0bd7849b2cdbf055057caf, type: 2}
+  is_spying: 0
 --- !u!61 &2119655598
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5491,6 +5521,7 @@ MonoBehaviour:
   is_audioOnly: 0
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: 7a54ec8dafa15bd4e92348cabfa6747e, type: 2}
+  is_spying: 0
 --- !u!61 &2143753687
 BoxCollider2D:
   m_ObjectHideFlags: 0

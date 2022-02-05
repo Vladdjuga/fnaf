@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Scroll;
@@ -17,12 +18,14 @@ public class CameraClick : MonoBehaviour
     public bool is_audioOnly;
     public GameObject audioOnly;
     public CameraAnima cameraObject;
+    public bool is_spying=false;
 
     void SelectOld()
     {
         this.GetComponent<SpriteRenderer>().sprite = old;
         if(is_audioOnly)
             audioOnly.SetActive(false);
+        is_spying = false;
     }
 
     void Start()
@@ -32,7 +35,12 @@ public class CameraClick : MonoBehaviour
 
     void Update()
     {
-        
+
+    }
+    public void Changed()
+    {
+        if(is_spying)
+            camera.sprite = view;
     }
     public void OnMouseUp()
     {
@@ -43,5 +51,6 @@ public class CameraClick : MonoBehaviour
         this.GetComponent<SpriteRenderer>().sprite = click_button;
         if (is_audioOnly)
             audioOnly.SetActive(true);
+        is_spying = true;
     }
 }

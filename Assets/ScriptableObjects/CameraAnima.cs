@@ -22,4 +22,9 @@ public class CameraAnima : ScriptableObject
     public Sprite[] bonnie;
     public Sprite[] chica;
     public Sprite[] freddy;
+
+    private void Awake()
+    {
+        is_animatronic = false;
+    }
 }

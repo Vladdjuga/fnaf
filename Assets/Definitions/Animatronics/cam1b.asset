@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: cam1b
   m_EditorClassIdentifier: 
   cameraName: cam1b
-  is_animatronic: 0
+  is_animatronic: 1
   stepForward_chance: 20
   stepBack_chance: 0
   is_canMoveHere: 1
@@ -28,6 +28,7 @@ MonoBehaviour:
   standart: {fileID: 21300000, guid: 455e8e19c9eccc943a1a0028defaf046, type: 3}
   bonnie:
   - {fileID: 21300000, guid: b3ddfff02e19c62498eeaadf3ec66af9, type: 3}
+  - {fileID: 21300000, guid: 81ef640a3a7ca3a45a98ecb89204c9b9, type: 3}
   chica:
   - {fileID: 21300000, guid: 74e89d46ce210e6429b05a1e38502698, type: 3}
   - {fileID: 21300000, guid: 63ba4ffdced38bd479513e0194a726f0, type: 3}
