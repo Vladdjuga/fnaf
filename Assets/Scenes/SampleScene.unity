@@ -231,6 +231,12 @@ MonoBehaviour:
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: b7f776f17da42394cad6375b9163b372, type: 2}
   is_spying: 0
+  is_HOMECAM: 0
+  is_bonnie: 0
+  is_chica: 0
+  is_freddy: 0
+  expert: {fileID: 0}
+  onError: {fileID: 217654156}
 --- !u!61 &32099100
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -462,6 +468,8 @@ MonoBehaviour:
   clicked_light: {fileID: 21300000, guid: 3c838ab19c5bc4046959d70938294d65, type: 3}
   clicked_door: {fileID: 21300000, guid: 7de698b662fd09b4cb6ef769ccde7d27, type: 3}
   clicked_light_door: {fileID: 21300000, guid: 580b19826402d29438308ce80ba624dc, type: 3}
+  bonnie: {fileID: 0}
+  chica: {fileID: 0}
   office: {fileID: 618478092}
   buttons: {fileID: 789269436}
   office_def: {fileID: 21300000, guid: 510a6330b3f3c0a45b41595324461447, type: 3}
@@ -672,8 +680,9 @@ MonoBehaviour:
   - {fileID: 1015015624}
   - {fileID: 421280513}
   timeStep: 0
-  canMove: 5
-  error: {fileID: 1873932877}
+  canMove: 15
+  error: {fileID: 217654156}
+  office: {fileID: 11400000, guid: c39194a27af43eb4ea34a06bc6ab84a4, type: 2}
 --- !u!4 &198904403
 Transform:
   m_ObjectHideFlags: 0
@@ -687,6 +696,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &217654155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 217654157}
+  - component: {fileID: 217654156}
+  m_Layer: 0
+  m_Name: Camera error
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &217654156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217654155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f178e095eeefac45b17eb3f7c7a333d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is_onError: 0
+  timeDelay: 0
+  errorTime: 6
+  spriteRenderer: {fileID: 1873932875}
+  colorNormalNoise: {r: 1, g: 1, b: 1, a: 0.28627452}
+  colorErrorNoise: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
+  errorAmbience: {fileID: 1036812512}
+  openCamera: {fileID: 916970284}
+--- !u!4 &217654157
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217654155}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.08162, y: -0.009926306, z: -6.790173}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &235059879
 GameObject:
@@ -736,6 +796,8 @@ MonoBehaviour:
   clicked_light: {fileID: 21300000, guid: edcb9cf3b559c854faea1b23dd434d8d, type: 3}
   clicked_door: {fileID: 21300000, guid: 60781ef2b50729744aa9b84097208bb1, type: 3}
   clicked_light_door: {fileID: 21300000, guid: 82595351b02ef9047898ac03edf98c14, type: 3}
+  bonnie: {fileID: 0}
+  chica: {fileID: 0}
   office: {fileID: 618478092}
   buttons: {fileID: 2025386660}
   office_def: {fileID: 21300000, guid: 510a6330b3f3c0a45b41595324461447, type: 3}
@@ -1335,6 +1397,12 @@ MonoBehaviour:
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: 4031338a7f14c194aa8bc52173943992, type: 2}
   is_spying: 0
+  is_HOMECAM: 0
+  is_bonnie: 0
+  is_chica: 0
+  is_freddy: 0
+  expert: {fileID: 0}
+  onError: {fileID: 217654156}
 --- !u!61 &421280514
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1601,6 +1669,12 @@ MonoBehaviour:
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: 5c8c90fb0ed80a04db325c1ac28daced, type: 2}
   is_spying: 0
+  is_HOMECAM: 0
+  is_bonnie: 0
+  is_chica: 0
+  is_freddy: 0
+  expert: {fileID: 0}
+  onError: {fileID: 217654156}
 --- !u!61 &532944549
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1675,6 +1749,8 @@ MonoBehaviour:
   clicked_light: {fileID: 21300000, guid: 3c838ab19c5bc4046959d70938294d65, type: 3}
   clicked_door: {fileID: 21300000, guid: 7de698b662fd09b4cb6ef769ccde7d27, type: 3}
   clicked_light_door: {fileID: 21300000, guid: 580b19826402d29438308ce80ba624dc, type: 3}
+  bonnie: {fileID: 21300000, guid: ee64895cf74abb64faebd7e9313d7a34, type: 3}
+  chica: {fileID: 21300000, guid: 1a8fc96e87099084bb6387de2dbc1d33, type: 3}
   office: {fileID: 618478092}
   buttons: {fileID: 789269436}
   office_def: {fileID: 21300000, guid: 510a6330b3f3c0a45b41595324461447, type: 3}
@@ -1844,7 +1920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1244145995}
-  view: {fileID: 21300000, guid: 9106107a3e3346945aece6eed791e310, type: 3}
+  view: {fileID: 21300000, guid: b22de70c5cfc08446b3c9cd111a1fa0c, type: 3}
   click_button: {fileID: 21300000, guid: 383e45d34690f8141a6bb884dbb1a59f, type: 3}
   old: {fileID: 21300000, guid: 9c1a4ea93c9c6fe458f531a0b3af624d, type: 3}
   scroll: {fileID: 805707519}
@@ -1854,6 +1930,12 @@ MonoBehaviour:
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: 7c242b6b546054f4faf4f2d0d13c3305, type: 2}
   is_spying: 0
+  is_HOMECAM: 0
+  is_bonnie: 0
+  is_chica: 0
+  is_freddy: 0
+  expert: {fileID: 0}
+  onError: {fileID: 217654156}
 --- !u!61 &569519315
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2614,6 +2696,12 @@ MonoBehaviour:
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 0}
   is_spying: 0
+  is_HOMECAM: 0
+  is_bonnie: 0
+  is_chica: 0
+  is_freddy: 0
+  expert: {fileID: 0}
+  onError: {fileID: 217654156}
 --- !u!61 &837749711
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3203,6 +3291,12 @@ MonoBehaviour:
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: 04fc953c8400aa644b905b69dc5f1944, type: 2}
   is_spying: 0
+  is_HOMECAM: 0
+  is_bonnie: 0
+  is_chica: 0
+  is_freddy: 0
+  expert: {fileID: 0}
+  onError: {fileID: 217654156}
 --- !u!61 &1015015625
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3229,6 +3323,133 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.4}
   m_EdgeRadius: 0
+--- !u!1 &1036812511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1036812513}
+  - component: {fileID: 1036812512}
+  m_Layer: 0
+  m_Name: Error ambience
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1036812512
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036812511}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 38f655baa505d314fa98905221f65ccc, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1036812513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036812511}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.5770924, y: 0.06192778, z: -6.5558767}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2117673063}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1075291321
 GameObject:
   m_ObjectHideFlags: 0
@@ -3442,6 +3663,8 @@ MonoBehaviour:
   clicked_light: {fileID: 21300000, guid: edcb9cf3b559c854faea1b23dd434d8d, type: 3}
   clicked_door: {fileID: 21300000, guid: 60781ef2b50729744aa9b84097208bb1, type: 3}
   clicked_light_door: {fileID: 21300000, guid: 82595351b02ef9047898ac03edf98c14, type: 3}
+  bonnie: {fileID: 21300000, guid: ee64895cf74abb64faebd7e9313d7a34, type: 3}
+  chica: {fileID: 21300000, guid: 1a8fc96e87099084bb6387de2dbc1d33, type: 3}
   office: {fileID: 618478092}
   buttons: {fileID: 2025386660}
   office_def: {fileID: 21300000, guid: 510a6330b3f3c0a45b41595324461447, type: 3}
@@ -3684,6 +3907,12 @@ MonoBehaviour:
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: dd87fb5d911aacf4692f6f4a36d50996, type: 2}
   is_spying: 0
+  is_HOMECAM: 0
+  is_bonnie: 0
+  is_chica: 0
+  is_freddy: 0
+  expert: {fileID: 0}
+  onError: {fileID: 217654156}
 --- !u!61 &1161562847
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4442,7 +4671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1244145995}
-  view: {fileID: 0}
+  view: {fileID: 21300000, guid: 795b3dc5f73db7f4ba83e0dbf640e78f, type: 3}
   click_button: {fileID: 21300000, guid: 383e45d34690f8141a6bb884dbb1a59f, type: 3}
   old: {fileID: 21300000, guid: 9c1a4ea93c9c6fe458f531a0b3af624d, type: 3}
   scroll: {fileID: 805707519}
@@ -4452,6 +4681,12 @@ MonoBehaviour:
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: 79eb2df275ad17d4a9a739b9135f1652, type: 2}
   is_spying: 0
+  is_HOMECAM: 0
+  is_bonnie: 0
+  is_chica: 0
+  is_freddy: 0
+  expert: {fileID: 0}
+  onError: {fileID: 217654156}
 --- !u!61 &1799163097
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4591,7 +4826,6 @@ GameObject:
   - component: {fileID: 1873932874}
   - component: {fileID: 1873932876}
   - component: {fileID: 1873932875}
-  - component: {fileID: 1873932877}
   m_Layer: 0
   m_Name: CameraNoise
   m_TagString: Untagged
@@ -4683,24 +4917,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1873932877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873932873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f178e095eeefac45b17eb3f7c7a333d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  is_onError: 0
-  timeDelay: 0
-  errorTime: 3
-  spriteRenderer: {fileID: 0}
-  colorNormalNoise: {r: 1, g: 1, b: 1, a: 0.28627452}
-  colorErrorNoise: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
 --- !u!1 &1887272887
 GameObject:
   m_ObjectHideFlags: 0
@@ -5161,6 +5377,12 @@ MonoBehaviour:
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: a5584f5092ff31345b4b50a4981c096b, type: 2}
   is_spying: 0
+  is_HOMECAM: 0
+  is_bonnie: 0
+  is_chica: 0
+  is_freddy: 0
+  expert: {fileID: 0}
+  onError: {fileID: 217654156}
 --- !u!61 &2110036205
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5277,6 +5499,7 @@ Transform:
   m_Children:
   - {fileID: 134679351}
   - {fileID: 1579676614}
+  - {fileID: 1036812513}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5387,7 +5610,13 @@ MonoBehaviour:
   is_audioOnly: 0
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: 5b14c7fddb0bd7849b2cdbf055057caf, type: 2}
-  is_spying: 0
+  is_spying: 1
+  is_HOMECAM: 1
+  is_bonnie: 1
+  is_chica: 1
+  is_freddy: 1
+  expert: {fileID: 11400000, guid: 986d8282c8256004ea141de06d3f2c0c, type: 2}
+  onError: {fileID: 217654156}
 --- !u!61 &2119655598
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5522,6 +5751,12 @@ MonoBehaviour:
   audioOnly: {fileID: 1080911695}
   cameraObject: {fileID: 11400000, guid: 7a54ec8dafa15bd4e92348cabfa6747e, type: 2}
   is_spying: 0
+  is_HOMECAM: 0
+  is_bonnie: 0
+  is_chica: 0
+  is_freddy: 0
+  expert: {fileID: 0}
+  onError: {fileID: 217654156}
 --- !u!61 &2143753687
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -9,4 +9,6 @@ public class OfficeObject : ScriptableObject
     public bool door_left;
     public bool light_right;
     public bool door_right;
+    public bool is_bonnie;
+    public bool is_chica;
 }

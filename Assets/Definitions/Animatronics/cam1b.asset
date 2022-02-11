@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: cam1b
   m_EditorClassIdentifier: 
   cameraName: cam1b
-  is_animatronic: 1
+  is_animatronic: 0
   stepForward_chance: 20
   stepBack_chance: 0
   is_canMoveHere: 1

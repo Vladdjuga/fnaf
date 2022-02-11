@@ -15,6 +15,7 @@ public class CameraAnima : ScriptableObject
     public bool is_canBonnie;
     public bool is_canChica;
     public bool is_canFreddy;
+    public bool is_fin;
 
     [Header("Sprites")]
     public Sprite standart;
@@ -25,6 +26,7 @@ public class CameraAnima : ScriptableObject
 
     private void Awake()
     {
+        Debug.Log("awake");
         is_animatronic = false;
     }
 }

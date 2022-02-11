@@ -16,3 +16,5 @@ MonoBehaviour:
   door_left: 0
   light_right: 0
   door_right: 0
+  is_bonnie: 1
+  is_chica: 0

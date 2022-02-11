@@ -19,12 +19,22 @@ public class CameraClick : MonoBehaviour
     public GameObject audioOnly;
     public CameraAnima cameraObject;
     public bool is_spying=false;
-
+    [Header("Home camera attributes")]
+    public bool is_HOMECAM;
+    public bool is_bonnie;
+    public bool is_chica;
+    public bool is_freddy;
+    public CAM1AExpert expert;
+    [Header("Errors")]
+    public OnError onError;
     void SelectOld()
     {
         this.GetComponent<SpriteRenderer>().sprite = old;
-        if(is_audioOnly)
+        if (is_audioOnly)
+        {
             audioOnly.SetActive(false);
+            //onError.SetAudioOnly(false);
+        }
         is_spying = false;
     }
 
@@ -32,10 +42,19 @@ public class CameraClick : MonoBehaviour
     {
         eventik += SelectOld;
     }
-
+    private void Awake()
+    {
+        if (cameraObject != null)
+            cameraObject.is_animatronic = false;
+    }
     void Update()
     {
 
+    }
+    public void UpdateCam()
+    {
+        this.view = expert.getSprite(is_bonnie, is_chica, is_freddy);
+        Changed();
     }
     public void Changed()
     {
@@ -50,7 +69,10 @@ public class CameraClick : MonoBehaviour
         text.sprite = roomName;
         this.GetComponent<SpriteRenderer>().sprite = click_button;
         if (is_audioOnly)
+        {
             audioOnly.SetActive(true);
+            //onError.SetAudioOnly(true);
+        }
         is_spying = true;
     }
 }

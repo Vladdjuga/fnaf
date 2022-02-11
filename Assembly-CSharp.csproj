@@ -64,8 +64,9 @@
     <Compile Include="Assets\Scripts\Camera\Scroll.cs" />
     <Compile Include="Assets\ScriptableObjects\Animatronics.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraClick.cs" />
-    <Compile Include="Assets\ScriptableObjects\OfficeObject.cs" />
     <Compile Include="Assets\Scripts\Camera\OnError.cs" />
+    <Compile Include="Assets\ScriptableObjects\OfficeObject.cs" />
+    <Compile Include="Assets\ScriptableObjects\CAM1AExpert.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

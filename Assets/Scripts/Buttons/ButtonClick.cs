@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class ButtonClick : MonoBehaviour
 {
+    [Header("Sprites for office")]
     public Sprite default_sprite;
     public Sprite clicked_light;
     public Sprite clicked_door;
     public Sprite clicked_light_door;
+    public Sprite bonnie;
+    public Sprite chica;
+    [Header("Sprite renderers")]
     public SpriteRenderer office;
     public SpriteRenderer buttons;
+    [Header("Utils")]
     public Sprite office_def;
     public Sprite office_1;
     public bool is_door;
@@ -26,7 +31,8 @@ public class ButtonClick : MonoBehaviour
 
     void Start()
     {
-
+        officeObject.is_chica = false;
+        officeObject.is_bonnie = false;
     }
     void Update()
     {
@@ -36,7 +42,21 @@ public class ButtonClick : MonoBehaviour
             if (chn <= 5f)
                 office.sprite = office_def;
             else
-                office.sprite = office_1;
+            {
+                Sprite finSprite = office_1;
+                if (is_left)
+                {
+                    if (officeObject.is_bonnie)
+                        finSprite = bonnie;
+                }
+                else
+                {
+                    if (officeObject.is_chica)
+                        finSprite = chica;
+                }
+
+                office.sprite = finSprite;
+            }
         }
 
         if (time_door < door_dur && is_doorClicked)
@@ -53,8 +73,11 @@ public class ButtonClick : MonoBehaviour
     {
         if (!is_door)
         {
+            Sprite finSprite = office_1;
             if (is_left)
             {
+                if (officeObject.is_bonnie)
+                    finSprite = bonnie;
                 if (officeObject.door_left)
                     buttons.sprite = clicked_light_door;
                 else
@@ -62,12 +85,14 @@ public class ButtonClick : MonoBehaviour
             }
             else
             {
+                if (officeObject.is_chica)
+                    finSprite = chica;
                 if (officeObject.door_right)
                     buttons.sprite = clicked_light_door;
                 else
                     buttons.sprite = clicked_light;
             }
-            office.sprite = office_1;
+            office.sprite = finSprite;
             is_lightON = true;
             if (is_left)
                 officeObject.light_left = true;
