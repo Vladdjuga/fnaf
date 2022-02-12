@@ -90,33 +90,47 @@ public class AnimatronicMovement : MonoBehaviour
                     }
                 }
             }
-            else if (anum == 2)
+            if (!office.is_chica)
             {
-                if (rand < chica.chanceReducer * chanceReducer)
+                if (anum == 2)
                 {
-                    rand = UnityEngine.Random.value;
-                    if (rand < chica.camera.stepBack_chance / chica.chanceReducer / chica.chanceReducer && chica.camera.stepBack != null)
+                    if (rand < chica.chanceReducer * chanceReducer)
                     {
-                        int randInt = UnityEngine.Random.Range(0, chica.camera.stepBack.Length);
-                        oldCamera = chica.camera.cameraName;
-                        if (chica.camera.stepBack[randInt].is_canChica && !chica.camera.stepBack[randInt].is_animatronic)
+                        rand = UnityEngine.Random.value;
+                        if (rand < chica.camera.stepBack_chance / chica.chanceReducer / chica.chanceReducer && chica.camera.stepBack != null)
                         {
-                            chica.camera = chica.camera.stepBack[randInt];
-                            //Debug.Log($"0 {chica.camera.stepBack.Length}");
-                            //Debug.Log(randInt);
-                            Step(chica.camera.cameraName, oldCamera, chica);
+                            int randInt = UnityEngine.Random.Range(0, chica.camera.stepBack.Length);
+                            oldCamera = chica.camera.cameraName;
+                            if (chica.camera.stepBack[randInt].is_canChica && !chica.camera.stepBack[randInt].is_animatronic)
+                            {
+                                chica.camera = chica.camera.stepBack[randInt];
+                                //Debug.Log($"0 {chica.camera.stepBack.Length}");
+                                //Debug.Log(randInt);
+                                Step(chica.camera.cameraName, oldCamera, chica);
+                            }
                         }
-                    }
-                    else if (rand < chica.camera.stepForward_chance / chica.chanceReducer / chica.chanceReducer && chica.camera.stepForward != null)
-                    {
-                        int randInt = UnityEngine.Random.Range(0, chica.camera.stepForward.Length);
-                        oldCamera = chica.camera.cameraName;
-                        if (chica.camera.stepForward[randInt].is_canChica && !chica.camera.stepForward[randInt].is_animatronic)
+                        else if (rand < chica.camera.stepForward_chance / chica.chanceReducer / chica.chanceReducer && (chica.camera.stepForward != null || chica.camera.is_fin))
                         {
-                            chica.camera = chica.camera.stepForward[randInt];
-                            //Debug.Log($"0 {chica.camera.stepForward.Length}");
-                            //Debug.Log(randInt);
-                            Step(chica.camera.cameraName, oldCamera, chica);
+                            if (!chica.camera.is_fin)
+                            {
+                                int randInt = UnityEngine.Random.Range(0, chica.camera.stepForward.Length);
+                                oldCamera = chica.camera.cameraName;
+                                if (chica.camera.stepForward[randInt].is_canChica && !chica.camera.stepForward[randInt].is_animatronic)
+                                {
+                                    chica.camera = chica.camera.stepForward[randInt];
+                                    //Debug.Log($"0 {chica.camera.stepForward.Length}");
+                                    //Debug.Log(randInt);
+                                    Step(chica.camera.cameraName, oldCamera, chica);
+                                }
+                            }
+                            else
+                            {
+                                oldCamera = chica.camera.cameraName;
+                                Debug.Log("1");
+                                chica.is_inDoor = true;
+                                office.is_chica = true;
+                                StepToDoor(oldCamera);
+                            }
                         }
                     }
                 }
@@ -172,8 +186,11 @@ public class AnimatronicMovement : MonoBehaviour
         if (camera1.cameraObject.standart != null)
         {
             Sprite[] sprites = GetAnimatronicSpritesByName(animatronic.name, camera1.cameraObject);
-            int rand = UnityEngine.Random.Range(0, sprites.Length);
-            camera1.view = sprites[rand];
+            if (sprites.Length > 0)
+            {
+                int rand = UnityEngine.Random.Range(0, sprites.Length);
+                camera1.view = sprites[rand];
+            }
         }
         camera1.cameraObject.is_animatronic = true;
         camera1.Changed();
