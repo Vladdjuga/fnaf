@@ -4,24 +4,23 @@ using UnityEngine;
 
 public enum Animatronic
 {
-    BONNIE, CHICA
+    BONNIE, CHICA,FREDDY,NONE
 }
 public class Jumpscare : MonoBehaviour
 {
-    public Animator animator_bonnie;
-    public Animator animator_chica;
-    public Animator animator_freddy;
+    public Animator animator;
     public AudioSource audio;
     public GameObject jump;
     public float duration=1f;
     public float count=0f;
-    public bool is_jumpscare = false;
+    public bool jumpscare = false;
     public OfficeObject office;
     public bool is_bonnie = false;
     public bool is_chica = false;
     public float durationToJumpscare = 5f;
     public float counterJumpscare = 0f;
     public Animatronic whoCares;
+    public GameObject camera;
     void Start()
     {
         
@@ -35,18 +34,45 @@ public class Jumpscare : MonoBehaviour
         //    audio.Play();
         //    is_jumpscare = true;
         //}
-        if (is_jumpscare)
+        if (whoCares != Animatronic.NONE)
         {
-            count += 1 * Time.deltaTime;
+            if(whoCares == Animatronic.CHICA&&office.door_right|| whoCares == Animatronic.BONNIE && office.door_left)
+            {
+                if (is_chica && office.door_right && is_bonnie && !office.door_left)
+                {
+                    whoCares = Animatronic.BONNIE;
+                }
+                else if (is_chica && !office.door_right && is_bonnie && office.door_left)
+                {
+                    whoCares = Animatronic.CHICA;
+                }
+                else
+                {
+                    counterJumpscare = 0;
+                    jumpscare = false;
+                }
+            }
+            else
+            {
+                counterJumpscare += 1 * Time.deltaTime;
+            }
+            if (count > 0)
+            {
+                count += 1 * Time.deltaTime;
+            }
             if (count >= duration)
             {
-                is_jumpscare = false;
-                count = 0f;
+                jumpscare = false;
                 audio.Stop();
+                whoCares = Animatronic.NONE;
+                count = 0f;
+                counterJumpscare = 0f;
             }
         }
-        animator_bonnie.SetBool("is_jumo", is_jumpscare);
-        
+        //animator.SetBool("is_jumo", is_jumpscare);
+        animator.SetBool("is_chica", whoCares == Animatronic.CHICA&& jumpscare==true);
+        animator.SetBool("is_jumo", whoCares == Animatronic.BONNIE&& jumpscare==true);
+
         if (counterJumpscare>0)
             counterJumpscare += 1 * Time.deltaTime;
         if(counterJumpscare >= durationToJumpscare)
@@ -56,10 +82,16 @@ public class Jumpscare : MonoBehaviour
                 case Animatronic.BONNIE:
                     jump.SetActive(true);
                     audio.Play();
-                    is_jumpscare = true;
+                    camera.transform.position = new Vector3(0, camera.transform.position.y, camera.transform.position.z);
+                    jumpscare = true;
                     counterJumpscare = 0f;
                     break;
                 case Animatronic.CHICA:
+                    jump.SetActive(true);
+                    audio.Play();
+                    camera.transform.position = new Vector3(0, camera.transform.position.y, camera.transform.position.z);
+                    jumpscare = true;
+                    counterJumpscare = 0f;
                     break;
                 default:
                     break;

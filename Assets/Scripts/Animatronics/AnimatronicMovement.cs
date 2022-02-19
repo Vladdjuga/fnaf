@@ -15,7 +15,9 @@ public class AnimatronicMovement : MonoBehaviour
     public float canMove = 5f;
     public OnError error;
     public OfficeObject office;
-
+    public float stepFromDoorChance = 10;
+    public CameraAnima camLeftDoor;
+    public CameraAnima camRightDoor;
     void Start()
     {
         #region Bonnie
@@ -90,6 +92,15 @@ public class AnimatronicMovement : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                if(rand<stepFromDoorChance* chanceReducer)
+                {
+                    bonnie.is_inDoor = false;
+                    office.is_bonnie = false;
+                    StepFromDoor(camLeftDoor.cameraName, bonnie);
+                }
+            }
             if (!office.is_chica)
             {
                 if (anum == 2)
@@ -137,7 +148,12 @@ public class AnimatronicMovement : MonoBehaviour
             }
             else
             {
-                //....
+                if (rand < stepFromDoorChance * chanceReducer)
+                {
+                    chica.is_inDoor = false;
+                    office.is_chica = false;
+                    StepFromDoor(camRightDoor.cameraName, chica);
+                }
             }
         }
         else
@@ -210,6 +226,31 @@ public class AnimatronicMovement : MonoBehaviour
         }
         camera2.view = camera2.cameraObject.standart;
         camera2.cameraObject.is_animatronic = false;
+        camera2.Changed();
+        timeStep += 1 * Time.deltaTime;
+    }
+    void StepFromDoor(string oldCamera,Animatronics animatronic)
+    {
+        error.is_onError = true;
+        CameraClick camera2 = null;
+        foreach (var item in cameras)
+        {
+            if (item.cameraObject != null)
+            {
+                if (oldCamera == item.cameraObject.cameraName)
+                    camera2 = item;
+            }
+        }
+        if (camera2.cameraObject.standart != null)
+        {
+            Sprite[] sprites = GetAnimatronicSpritesByName(animatronic.name, camera2.cameraObject);
+            if (sprites.Length > 0)
+            {
+                int rand = UnityEngine.Random.Range(0, sprites.Length);
+                camera2.view = sprites[rand];
+            }
+        }
+        camera2.cameraObject.is_animatronic = true;
         camera2.Changed();
         timeStep += 1 * Time.deltaTime;
     }

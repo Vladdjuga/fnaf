@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraName: cam2b
   is_animatronic: 0
-  stepForward_chance: 50
-  stepBack_chance: 10
+  stepForward_chance: 40
+  stepBack_chance: 20
   is_canMoveHere: 1
   stepForward: []
   stepBack:

@@ -683,6 +683,9 @@ MonoBehaviour:
   canMove: 15
   error: {fileID: 217654156}
   office: {fileID: 11400000, guid: c39194a27af43eb4ea34a06bc6ab84a4, type: 2}
+  stepFromDoorChance: 10
+  camLeftDoor: {fileID: 11400000, guid: 4031338a7f14c194aa8bc52173943992, type: 2}
+  camRightDoor: {fileID: 11400000, guid: 5c8c90fb0ed80a04db325c1ac28daced, type: 2}
 --- !u!4 &198904403
 Transform:
   m_ObjectHideFlags: 0
@@ -5382,20 +5385,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 000fd48c0a2375446966956da34c30ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator_bonnie: {fileID: 1827195150}
-  animator_chica: {fileID: 0}
-  animator_freddy: {fileID: 0}
+  animator: {fileID: 1827195150}
   audio: {fileID: 974825029}
   jump: {fileID: 1725130148}
   duration: 1
   count: 0
-  is_jumpscare: 0
+  jumpscare: 0
   office: {fileID: 11400000, guid: c39194a27af43eb4ea34a06bc6ab84a4, type: 2}
   is_bonnie: 0
   is_chica: 0
   durationToJumpscare: 5
   counterJumpscare: 0
-  whoCares: 0
+  whoCares: 3
+  camera: {fileID: 519420028}
 --- !u!4 &2059440003
 Transform:
   m_ObjectHideFlags: 0
