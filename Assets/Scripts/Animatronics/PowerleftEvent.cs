@@ -28,6 +28,7 @@ public class PowerleftEvent : MonoBehaviour
         if (timer >= timerSec)
         {
             circus.Play();
+
         }
     }
 
