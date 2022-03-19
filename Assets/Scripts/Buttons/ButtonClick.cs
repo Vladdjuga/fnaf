@@ -33,6 +33,7 @@ public class ButtonClick : MonoBehaviour
     {
         officeObject.is_chica = false;
         officeObject.is_bonnie = false;
+        officeObject.is_freddy = false;
     }
     void Update()
     {

@@ -6,6 +6,7 @@ public class Scroll : MonoBehaviour
 {
     public Animator anim;
     public AudioSource sound;
+    public Sprite sprite;
     public bool is_stopped=false;
 
     void Start()

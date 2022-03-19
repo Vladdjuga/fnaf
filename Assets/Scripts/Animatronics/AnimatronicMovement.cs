@@ -10,6 +10,7 @@ public class AnimatronicMovement : MonoBehaviour
     public Animatronics chica;
     public Animatronics freddy;
     public float chanceReducer;
+    public float freddyChance;
     public CameraClick[] cameras;
     public float timeStep = 0f;
     public float canMove = 5f;
@@ -18,6 +19,7 @@ public class AnimatronicMovement : MonoBehaviour
     public float stepFromDoorChance = 10;
     public CameraAnima camLeftDoor;
     public CameraAnima camRightDoor;
+    public bool is_freddyMoving = false;
     void Start()
     {
         #region Bonnie
@@ -42,117 +44,182 @@ public class AnimatronicMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        float randFreddy = UnityEngine.Random.value;
+        if (randFreddy < freddyChance)
+        {
+            is_freddyMoving = true;
+            freddy.chanceReducer = 10;
+        }
+
         if (timeStep == 0)
         {
             float rand = UnityEngine.Random.value;
             float anum = UnityEngine.Random.Range(1, 3);
             string oldCamera = "";
-            if (!office.is_bonnie) {
-                if (anum == 1)
+            if (!is_freddyMoving)
+            {
+                if (!office.is_bonnie)
                 {
-                    if (rand < bonnie.chanceReducer * chanceReducer)
+                    if (anum == 1)
                     {
-                        rand = UnityEngine.Random.value;
-                        if (rand < bonnie.camera.stepBack_chance / bonnie.chanceReducer / bonnie.chanceReducer && bonnie.camera.stepBack != null)
+                        if (rand < bonnie.chanceReducer * chanceReducer)
                         {
-                            int randInt = UnityEngine.Random.Range(0, bonnie.camera.stepBack.Length);
-                            oldCamera = bonnie.camera.cameraName;
-                            if (bonnie.camera.stepBack[randInt].is_canBonnie && !bonnie.camera.stepBack[randInt].is_animatronic)
+                            rand = UnityEngine.Random.value;
+                            if (rand < bonnie.camera.stepBack_chance / bonnie.chanceReducer / bonnie.chanceReducer && bonnie.camera.stepBack != null)
                             {
-                                bonnie.camera = bonnie.camera.stepBack[randInt];
-                                //Debug.Log($"0 {bonnie.camera.stepBack.Length}");
-                                //Debug.Log(randInt);
-                                Step(bonnie.camera.cameraName, oldCamera, bonnie);
-                            }
-                        }
-                        else if (rand < bonnie.camera.stepForward_chance / bonnie.chanceReducer / bonnie.chanceReducer && (bonnie.camera.stepForward != null || bonnie.camera.is_fin))
-                        {
-                            if (!bonnie.camera.is_fin)
-                            {
-                                Debug.Log("2");
-                                int randInt = UnityEngine.Random.Range(0, bonnie.camera.stepForward.Length);
+                                int randInt = UnityEngine.Random.Range(0, bonnie.camera.stepBack.Length);
                                 oldCamera = bonnie.camera.cameraName;
-                                if (bonnie.camera.stepForward[randInt].is_canBonnie && !bonnie.camera.stepForward[randInt].is_animatronic)
+                                if (bonnie.camera.stepBack[randInt].is_canBonnie && !bonnie.camera.stepBack[randInt].is_animatronic)
                                 {
-                                    bonnie.camera = bonnie.camera.stepForward[randInt];
-                                    //Debug.Log($"0 {bonnie.camera.stepForward.Length}");
+                                    bonnie.camera = bonnie.camera.stepBack[randInt];
+                                    //Debug.Log($"0 {bonnie.camera.stepBack.Length}");
                                     //Debug.Log(randInt);
                                     Step(bonnie.camera.cameraName, oldCamera, bonnie);
                                 }
                             }
-                            else
+                            else if (rand < bonnie.camera.stepForward_chance / bonnie.chanceReducer / bonnie.chanceReducer && (bonnie.camera.stepForward != null || bonnie.camera.is_fin))
                             {
-                                oldCamera = bonnie.camera.cameraName;
-                                Debug.Log("1");
-                                bonnie.is_inDoor = true;
-                                office.is_bonnie = true;
-                                StepToDoor(oldCamera);
+                                if (!bonnie.camera.is_fin)
+                                {
+                                    Debug.Log("2");
+                                    int randInt = UnityEngine.Random.Range(0, bonnie.camera.stepForward.Length);
+                                    oldCamera = bonnie.camera.cameraName;
+                                    if (bonnie.camera.stepForward[randInt].is_canBonnie && !bonnie.camera.stepForward[randInt].is_animatronic)
+                                    {
+                                        bonnie.camera = bonnie.camera.stepForward[randInt];
+                                        //Debug.Log($"0 {bonnie.camera.stepForward.Length}");
+                                        //Debug.Log(randInt);
+                                        Step(bonnie.camera.cameraName, oldCamera, bonnie);
+                                    }
+                                }
+                                else
+                                {
+                                    oldCamera = bonnie.camera.cameraName;
+                                    Debug.Log("1");
+                                    bonnie.is_inDoor = true;
+                                    office.is_bonnie = true;
+                                    StepToDoor(oldCamera);
+                                }
                             }
                         }
                     }
                 }
-            }
-            else
-            {
-                if(rand<stepFromDoorChance* chanceReducer)
+                else
                 {
-                    bonnie.is_inDoor = false;
-                    office.is_bonnie = false;
-                    StepFromDoor(camLeftDoor.cameraName, bonnie);
-                }
-            }
-            if (!office.is_chica)
-            {
-                if (anum == 2)
-                {
-                    if (rand < chica.chanceReducer * chanceReducer)
+                    if (rand < stepFromDoorChance * chanceReducer)
                     {
-                        rand = UnityEngine.Random.value;
-                        if (rand < chica.camera.stepBack_chance / chica.chanceReducer / chica.chanceReducer && chica.camera.stepBack != null)
+                        bonnie.is_inDoor = false;
+                        office.is_bonnie = false;
+                        StepFromDoor(camLeftDoor.cameraName, bonnie);
+                    }
+                }
+                if (!office.is_chica)
+                {
+                    if (anum == 2)
+                    {
+                        if (rand < chica.chanceReducer * chanceReducer)
                         {
-                            int randInt = UnityEngine.Random.Range(0, chica.camera.stepBack.Length);
-                            oldCamera = chica.camera.cameraName;
-                            if (chica.camera.stepBack[randInt].is_canChica && !chica.camera.stepBack[randInt].is_animatronic)
+                            rand = UnityEngine.Random.value;
+                            if (rand < chica.camera.stepBack_chance / chica.chanceReducer / chica.chanceReducer && chica.camera.stepBack != null)
                             {
-                                chica.camera = chica.camera.stepBack[randInt];
-                                //Debug.Log($"0 {chica.camera.stepBack.Length}");
-                                //Debug.Log(randInt);
-                                Step(chica.camera.cameraName, oldCamera, chica);
-                            }
-                        }
-                        else if (rand < chica.camera.stepForward_chance / chica.chanceReducer / chica.chanceReducer && (chica.camera.stepForward != null || chica.camera.is_fin))
-                        {
-                            if (!chica.camera.is_fin)
-                            {
-                                int randInt = UnityEngine.Random.Range(0, chica.camera.stepForward.Length);
+                                int randInt = UnityEngine.Random.Range(0, chica.camera.stepBack.Length);
                                 oldCamera = chica.camera.cameraName;
-                                if (chica.camera.stepForward[randInt].is_canChica && !chica.camera.stepForward[randInt].is_animatronic)
+                                if (chica.camera.stepBack[randInt].is_canChica && !chica.camera.stepBack[randInt].is_animatronic)
                                 {
-                                    chica.camera = chica.camera.stepForward[randInt];
-                                    //Debug.Log($"0 {chica.camera.stepForward.Length}");
+                                    chica.camera = chica.camera.stepBack[randInt];
+                                    //Debug.Log($"0 {chica.camera.stepBack.Length}");
                                     //Debug.Log(randInt);
                                     Step(chica.camera.cameraName, oldCamera, chica);
                                 }
                             }
-                            else
+                            else if (rand < chica.camera.stepForward_chance / chica.chanceReducer / chica.chanceReducer && (chica.camera.stepForward != null || chica.camera.is_fin))
                             {
-                                oldCamera = chica.camera.cameraName;
-                                Debug.Log("1");
-                                chica.is_inDoor = true;
-                                office.is_chica = true;
-                                StepToDoor(oldCamera);
+                                if (!chica.camera.is_fin)
+                                {
+                                    int randInt = UnityEngine.Random.Range(0, chica.camera.stepForward.Length);
+                                    oldCamera = chica.camera.cameraName;
+                                    if (chica.camera.stepForward[randInt].is_canChica && !chica.camera.stepForward[randInt].is_animatronic)
+                                    {
+                                        chica.camera = chica.camera.stepForward[randInt];
+                                        //Debug.Log($"0 {chica.camera.stepForward.Length}");
+                                        //Debug.Log(randInt);
+                                        Step(chica.camera.cameraName, oldCamera, chica);
+                                    }
+                                }
+                                else
+                                {
+                                    oldCamera = chica.camera.cameraName;
+                                    Debug.Log("1");
+                                    chica.is_inDoor = true;
+                                    office.is_chica = true;
+                                    StepToDoor(oldCamera);
+                                }
                             }
                         }
+                    }
+                }
+                else
+                {
+                    if (rand < stepFromDoorChance * chanceReducer)
+                    {
+                        chica.is_inDoor = false;
+                        office.is_chica = false;
+                        StepFromDoor(camRightDoor.cameraName, chica);
                     }
                 }
             }
             else
             {
-                if (rand < stepFromDoorChance * chanceReducer)
+                if (!office.is_freddy)
                 {
-                    chica.is_inDoor = false;
-                    office.is_chica = false;
-                    StepFromDoor(camRightDoor.cameraName, chica);
+                    if (rand < freddy.chanceReducer * chanceReducer)
+                    {
+                        rand = UnityEngine.Random.value;
+                        if (rand < freddy.camera.stepBack_chance / freddy.chanceReducer / freddy.chanceReducer && freddy.camera.stepBack != null)
+                        {
+                            int randInt = UnityEngine.Random.Range(0, freddy.camera.stepBack.Length);
+                            oldCamera = freddy.camera.cameraName;
+                            if (freddy.camera.stepBack[randInt].is_canFreddy)
+                            {
+                                freddy.camera = freddy.camera.stepBack[randInt];
+                                //Debug.Log($"0 {freddy.camera.stepBack.Length}");
+                                //Debug.Log(randInt);
+                                Step(freddy.camera.cameraName, oldCamera, freddy);
+                            }
+                        }
+                        else if (rand < freddy.camera.stepForward_chance / freddy.chanceReducer / freddy.chanceReducer && (freddy.camera.stepForward != null || freddy.camera.is_fin))
+                        {
+                            if (!freddy.camera.is_fin)
+                            {
+                                int randInt = UnityEngine.Random.Range(0, freddy.camera.stepForward.Length);
+                                oldCamera = freddy.camera.cameraName;
+                                if (freddy.camera.stepForward[randInt].is_canFreddy)
+                                {
+                                    freddy.camera = freddy.camera.stepForward[randInt];
+                                    //Debug.Log($"0 {freddy.camera.stepForward.Length}");
+                                    //Debug.Log(randInt);
+                                    Step(freddy.camera.cameraName, oldCamera, freddy);
+                                }
+                            }
+                            else
+                            {
+                                oldCamera = freddy.camera.cameraName;
+                                Debug.Log("1");
+                                freddy.is_inDoor = true;
+                                office.is_freddy = true;
+                                StepToDoor(oldCamera);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (rand < stepFromDoorChance * chanceReducer)
+                    {
+                        freddy.is_inDoor = false;
+                        office.is_freddy = false;
+                        StepFromDoor(camRightDoor.cameraName, freddy);
+                    }
                 }
             }
         }
@@ -163,11 +230,11 @@ public class AnimatronicMovement : MonoBehaviour
                 timeStep = 0f;
         }
     }
-    public Sprite[] GetAnimatronicSpritesByName(string _name,CameraAnima obj)
+    public Sprite[] GetAnimatronicSpritesByName(string _name, CameraAnima obj)
     {
         return (Sprite[])typeof(CameraAnima).GetField(_name).GetValue(obj);
     }
-    void Step(string camera, string oldCamera,Animatronics animatronic)
+    void Step(string camera, string oldCamera, Animatronics animatronic)
     {
         error.is_onError = true;
         CameraClick camera1 = null;
@@ -194,7 +261,7 @@ public class AnimatronicMovement : MonoBehaviour
         }
         else
         {
-            if(camera2.cameraObject!=null)
+            if (camera2.cameraObject != null)
                 camera2.view = camera2.cameraObject.standart;
             camera2.cameraObject.is_animatronic = false;
             camera2.Changed();
@@ -229,7 +296,7 @@ public class AnimatronicMovement : MonoBehaviour
         camera2.Changed();
         timeStep += 1 * Time.deltaTime;
     }
-    void StepFromDoor(string oldCamera,Animatronics animatronic)
+    void StepFromDoor(string oldCamera, Animatronics animatronic)
     {
         error.is_onError = true;
         CameraClick camera2 = null;

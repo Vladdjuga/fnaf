@@ -64,6 +64,7 @@ public class CameraClick : MonoBehaviour
     public void OnMouseUp()
     {
         scroll.DoAnimation();
+        scroll.GetComponent<SpriteRenderer>().sprite=null;
         eventik.Invoke();
         camera.sprite = view;
         text.sprite = roomName;

@@ -25,9 +25,11 @@ MonoBehaviour:
   is_canBonnie: 0
   is_canChica: 1
   is_canFreddy: 1
+  is_fin: 0
   standart: {fileID: 21300000, guid: 7b78c7b8ebfe0d64c983b5d5b8b1b197, type: 3}
   bonnie: []
   chica:
   - {fileID: 21300000, guid: 27ee2b9a351f64245ad567b144e02627, type: 3}
   - {fileID: 21300000, guid: 35f9a615d4cfc2840a68d8be02abd18c, type: 3}
-  freddy: []
+  freddy:
+  - {fileID: 21300000, guid: 52e6ae01e6a987e44af00664a4e95471, type: 3}

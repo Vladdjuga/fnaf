@@ -29,4 +29,5 @@ MonoBehaviour:
   chica:
   - {fileID: 21300000, guid: 5e258cf8809c78f43a75dcd82e6b204a, type: 3}
   - {fileID: 21300000, guid: 1a8d16e80d440a54892ea32787fbc96e, type: 3}
-  freddy: []
+  freddy:
+  - {fileID: 21300000, guid: 17cfe3f186d463441b0c2d61d411ce86, type: 3}

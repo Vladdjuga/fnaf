@@ -17,6 +17,7 @@ public class Jumpscare : MonoBehaviour
     public OfficeObject office;
     public bool is_bonnie = false;
     public bool is_chica = false;
+    public bool is_freddy = false;
     public float durationToJumpscare = 5f;
     public float counterJumpscare = 0f;
     public Animatronic whoCares;
@@ -46,6 +47,10 @@ public class Jumpscare : MonoBehaviour
                 {
                     whoCares = Animatronic.CHICA;
                 }
+                else if (is_freddy && !office.door_right && is_bonnie && office.door_left)
+                {
+                    whoCares = Animatronic.FREDDY;
+                }
                 else
                 {
                     counterJumpscare = 0;
@@ -72,6 +77,7 @@ public class Jumpscare : MonoBehaviour
         //animator.SetBool("is_jumo", is_jumpscare);
         animator.SetBool("is_chica", whoCares == Animatronic.CHICA&& jumpscare==true);
         animator.SetBool("is_jumo", whoCares == Animatronic.BONNIE&& jumpscare==true);
+        animator.SetBool("is_freddy", whoCares == Animatronic.FREDDY&& jumpscare==true);
 
         if (counterJumpscare>0)
             counterJumpscare += 1 * Time.deltaTime;
@@ -93,6 +99,13 @@ public class Jumpscare : MonoBehaviour
                     jumpscare = true;
                     counterJumpscare = 0f;
                     break;
+                case Animatronic.FREDDY:
+                    jump.SetActive(true);
+                    audio.Play();
+                    camera.transform.position = new Vector3(0, camera.transform.position.y, camera.transform.position.z);
+                    jumpscare = true;
+                    counterJumpscare = 0f;
+                    break;
                 default:
                     break;
             }
@@ -108,6 +121,12 @@ public class Jumpscare : MonoBehaviour
             is_chica = office.is_chica;
             counterJumpscare += 1 * Time.deltaTime;
             whoCares = Animatronic.CHICA;
+        }
+        if (is_freddy != office.is_freddy)
+        {
+            is_freddy = office.is_freddy;
+            counterJumpscare += 1 * Time.deltaTime;
+            whoCares = Animatronic.FREDDY;
         }
     }
 }

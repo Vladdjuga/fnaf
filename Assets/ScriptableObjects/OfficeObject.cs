@@ -11,4 +11,5 @@ public class OfficeObject : ScriptableObject
     public bool door_right;
     public bool is_bonnie;
     public bool is_chica;
+    public bool is_freddy;
 }
